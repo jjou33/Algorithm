@@ -1,0 +1,30 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function solution(s) {
+            let count = 0
+            let index = s.indexOf('e');
+            while(index !== -1) {
+                count++
+                index = s.indexOf('e', index+1)
+            }
+            return count
+        }
+
+        // let string = "COMPUTERPROGRAMMING"
+        console.log(solution("streinge"))
+
+    </script>
+</body>
+
+</html>

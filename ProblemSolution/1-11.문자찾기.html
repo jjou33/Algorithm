@@ -1,0 +1,37 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function solution(s, c) {
+            let count = 0
+            for(let x of s) {
+                if(x === c) {
+                    count++
+                }
+            }
+            return count
+        }
+        function solution2(s, c) {
+            // 구분자를 통해 분리할 수 있다.
+            let answer = s.split(c).length - 1
+
+            return answer
+        }
+
+        let string = "COMPUTERPROGRAMMING"
+        let char = "R"
+        console.log(solution2(string, char))
+
+    </script>
+</body>
+
+</html>

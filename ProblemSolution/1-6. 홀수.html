@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 실제로 개발
+        function solution(arr) {
+            let resultArr = []
+                , sum = 0
+                , min = Number.MAX_SAFE_INTEGER
+            for (i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 > 0) {
+                    sum += arr[i]
+                    if (arr[i] < min) {
+                        min = arr[i]
+                    }
+                }
+            }
+            resultArr.push(sum)
+            resultArr.push(min)
+            return resultArr
+        }
+        function solution(arr) {
+            let answer = []
+                , sum = 0
+            for (let x of arr) {
+                if (x % 2 == 1) {
+                    sum += x
+                }
+            }
+        }
+        let arr = [12, 77, 38, 41, 53, 92, 85]
+        console.log(solution(arr))
+    </script>
+</body>
+
+</html>

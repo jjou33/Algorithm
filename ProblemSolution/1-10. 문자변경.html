@@ -1,0 +1,52 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function solution(st) {
+            return st.replaceAll("A", "#");
+        }
+        function solution4(string) {
+            let answer = string
+            answer = answer.replace(/A/g, '#')
+            console.log(answer)
+            return answer
+        }
+        function solution2(st) {
+            let test = ""
+            for(let i=0;i<st.length;i++) {
+                if(st[i] === "A") {
+                    test += "#"
+                } else {
+                    test += st[i]
+                }
+            }
+            return test
+        }
+        function solution3(string) {
+            let result = ""
+            for(let x of string) {
+                if(x == "A") {
+                    result += "#"
+                } else {
+                    result += x
+                }
+            }
+            return result
+        }
+
+        let st = "BANANA"
+        console.log(solution4(st))
+
+    </script>
+</body>
+
+</html>

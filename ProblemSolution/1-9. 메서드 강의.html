@@ -1,0 +1,52 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //forEach, map, filter, reduce
+        // function forEach(predicate, thisArg) {
+        //     for(let i=0; i <a.length; i++) {
+        //         predicate(a[i], i)
+        //     }
+        // }
+        function filter(predicate, thisArg) {
+            let list=[];
+            for(let i=0; i<a.length;i++) {
+                if(predicate(a[i], i)) {
+                    list.push(a[i])
+                }
+            }
+        }
+        // let a = [10,11,12,13,14,15];
+        // forEach : 배열을 접근할때 for 반복문을 활용하지 않고 접근하는 메서드
+        // let answer = a.forEach(function(v, i){
+        //     return v*v
+        // }, [1,2]);
+        function reduce(predicate, val) {
+            let result = val
+            for (let i = 0; i < a.length; i++) {
+                result=predicate(result, a[i])
+            }
+            return result
+        }
+        
+        let a = [10, 11, 12, 13, 14, 15];
+        let answer = a.reduce(function (acc, v) {
+                return acc+v
+            }, 0);
+        console.log(answer)
+
+
+
+    </script>
+</body>
+
+</html>

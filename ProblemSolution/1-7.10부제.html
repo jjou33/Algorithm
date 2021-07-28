@@ -1,0 +1,37 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function solution(day, arr) {
+                let count = 0
+                for(let x of arr) {
+                    if(x%10 === day) {
+                        count++
+                    }
+                }
+            return count
+        }
+        function solution2(day, arr) {
+            let count = 0
+            for(let x of arr) {
+                let lastChar = String(x).charAt(String(x).length - 1)
+                if(parseInt(lastChar) === day) {
+                    count += 1
+                }
+            }
+            return count
+        }
+        let day = 0
+        let arr = [20,23,10,40,53,10,33]
+        console.log(solution(day, arr))
+
+    </script>
+</body>
+</html>

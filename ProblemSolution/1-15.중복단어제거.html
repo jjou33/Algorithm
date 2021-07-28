@@ -1,0 +1,32 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function solution(str) {
+           for(let i=0;i < str.length;i++) {
+               for(let j=i+1; j < str.length;j++) {
+                   if(str[i] === str[j]) {
+                       console.log(j)
+                       str.splice(j, 1)
+                   }
+               }
+           }
+           return str
+        }
+
+        let str=["good", "time", "good", "time", "student", "hello", "time"]
+        console.log(solution(str))
+
+    </script>
+</body>
+
+</html>

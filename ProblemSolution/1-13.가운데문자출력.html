@@ -1,0 +1,31 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function solution(s) {
+            let mid = Math.floor(s.length/2)
+            if(s.length%2 === 0) {
+                console.log(mid)
+                return s.substring(mid - 1, mid + 1)
+            } else {
+                return s.substring(mid,mid + 1)
+            }
+            console.log(mid)
+        }
+
+        // let string = "COMPUTERPROGRAMMING"
+        console.log(solution("stringe"))
+
+    </script>
+</body>
+
+</html>

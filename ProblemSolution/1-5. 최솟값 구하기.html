@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 실제로 개발
+            function solution(arr) {
+                let min = Number.MAX_SAFE_INTEGER;
+                for (i = 0; i < arr.length; i++) {
+                    if (arr[i] < min) {
+                        console.log(min)
+                        min = arr[i]
+                    }
+                }
+                return min
+            }
+        // 내부 모듈 사용
+            function solution2(arr) {
+                // 기본적으로는 배열을 넣으면 실행되지 않음
+                let min1 = Math.min(3, 4, 5, 6)
+                // 대안1 첫번째 인자는 객체, 두번재 인자에 배열
+                let min2 = Math.min.apply(null, arr)
+                // 대안2 전개연산자 
+                let max = Math.max(...arr)
+                let min = Math.min(...arr)
+                return min
+            }
+        let arr = [12,77,38,41,53,92,85]
+        console.log(solution(arr))
+    </script>
+</body>
+
+</html>

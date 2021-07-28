@@ -1,0 +1,33 @@
+일의자리 숫자가 주어짐
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function solution(string) {
+            let result = ""
+            for(x of string) {
+                if(x.charCodeAt() >= 97 && x.charCodeAt() <= 122) {
+                    result += String.fromCharCode((x.charCodeAt() - 32))
+                    console.log(x.charCodeAt())
+                } else {
+                    result += String.fromCharCode((x.charCodeAt() + 32))
+                }
+            }
+            return result
+        }
+        let string = "KoreaTimeGood"
+
+        console.log(solution(string))
+
+    </script>
+</body>
+
+</html>
