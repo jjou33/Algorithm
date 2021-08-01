@@ -24,8 +24,9 @@
         }
         function solution(str) {
             let answer
-
+            
             answer = str.filter((v, i) => {
+                // indexOf 의 경우 str 내 v 의 첫번째 마주치는 Index 값을 리턴하므로 만약 i 와 다르다면 중복된것
                 if(str.indexOf(v) === i) {
                     return v
                 }

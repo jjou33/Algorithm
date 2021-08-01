@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 문제를 맞히면 1점 틀리면 0점, 연달아 맞추면 1점씩 가산 즉, 3문제 연속 정답 시 1,2,3 점 부여
+        function solution(arr) {
+            let tempScore = 1; // 점수값을 위한 기준점수
+            let answer = []; // 결과 배열
+            for(let i=0;i<arr.length;i++) {
+                if(arr[i] === 1) { // 정답일경우 
+                    answer.push(tempScore) // 점수 push
+                    if(arr[i+1] === 1) { // 다음 index 가 정답일경우
+                        tempScore += 1 // 점수 가산
+                    } else { 
+                        tempScore = 1 // 아닐경우 기준 Rollback
+                    }
+                } else {
+                    answer.push(0) // 오답일 경우 0 (확인을 위해 추가함 사실 불필요한코드)
+                }
+            }
+            console.log(answer)
+            return answer.reduce((acc, v) => { // 합계산
+                return acc + v
+            }, 0)
+        }
+
+        function solution2(arr) {
+            let answer = 0, cnt = 0
+            for(let x of arr) {
+                if(x === 1) {
+                    cnt++
+                    answer += cnt
+                } else {
+                    cnt=0
+                }
+            }
+            return answer
+        }
+
+        let arr =[1,0,1,1,1,0,0,1,1,0,1,1,1,1,1,0,0,0,1]
+        console.log(solution2(arr))
+    </script>
+</body>
+</html>
