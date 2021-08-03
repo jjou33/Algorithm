@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+function solution(str) {
+    let answer = "YES"
+    // 영어 아닌 값 자르기
+    for(let i=0; i<str.length; i++) {
+        if((str[i].charCodeAt() < 65 || str[i].charCodeAt() > 122)) {
+            str = str.replace(str[i], '')
+            i -= 1
+        }
+    }
+    // 리버스 함수를 통해 일치 확인
+    if(str.toLowerCase() !== str.toLowerCase().split('').reverse().join('')) {
+        answer = "NO"
+    }
+    return answer
+}
+
+function solution2(str) {
+    let answer = "YES"
+
+    // 정규식 사용 a-z 가 아닌것들을 모두 삭제
+    str = str.toLowerCase().replace(/[^a-z]/g, '')
+    // 문자열 reverse 일치 확인
+    if(str !== str.split('').reverse().join('')) {
+        return "NO"
+    }
+    return answer
+}
+
+let str = "found7, time: study; Yduts; emit, 7Dnuof";
+console.log(solution(str));
+    </script>
+</body>
+
+</html>
