@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 직접비교
+function solution(str) {
+    let answerFlag = "YES"
+    let length = Math.floor(str.length / 2) // 어차피 짝수,홀수 개일경우에도 중간은 검증할 필요가 없음
+    str = str.toLowerCase()
+    for(let i=0; i<length; i++) {
+        if(str[i] !== (str[str.length - i - 1])) {
+            answerFlag = "NO"
+            break
+        }
+    }
+    return answerFlag
+}
+
+// reverse 사용
+function solution2(str) {
+    let answerFlag = "YES"
+    let length = Math.floor(str.length / 2)
+    str = str.toLowerCase()
+    // 빈문자열로 split 할 경우 str 이 배열이됨 / str.split('')
+    // reverse 는 배열로 변환이 필요함 / str.split('').reverse()
+    // join 의 경우 배열을 string 으로 변환함 / str.split('').reverse().join('')
+    if (str !== str.split('').reverse().join('')) {
+        answerFlag = "NO"
+    }
+    return answerFlag
+}
+
+let str = "gOdog"
+console.log(solution2(str))
+</script>
+</body>
+</html>
