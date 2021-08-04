@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+
+function solution(str, char) {
+    let answer = []
+    let checkIdx = []
+
+    for(let i=0; i<str.length; i++) {
+        if (str[i] === char) {
+            checkIdx.push(i)
+        }
+    }
+
+    // max 함수 사용
+    // for(let i=0; i <str.length; i++) {
+    //     let tempArr = []
+    //     for(let j=0; j< checkIdx.length; j++) {
+    //         tempArr.push(Math.abs(checkIdx[j]-i))
+    //     }
+    //     answer.push(Math.min(...tempArr))
+    // }
+
+    // max 함수 미사용
+    for (let i = 0; i < str.length; i++) {
+        let tempArr = []
+        let min = Number.MAX_SAFE_INTEGER
+        for (let j = 0; j < checkIdx.length; j++) {
+            if(Math.abs(checkIdx[j]-i) < min) {
+                min = Math.abs(checkIdx[j]-i)
+            }
+        }
+        answer.push(min)
+    }
+    
+    return answer
+}
+// 시간복잡도 O(n) 으로 훨씬 짧다.
+// 배열을 양방향으로 훑으면서 작은 값을 넣어주는 방식
+function solution2(str, char) {
+    let answer = []
+    let flag = 1000
+    for(let x of str) {
+        if(x !== char) {
+            flag++
+        } else {
+            flag = 0
+        }
+        answer.push(flag)
+    }
+    flag = 1000
+    for(let i=str.length-1; i >= 0; i--) {
+        if(str[i] !== char) {
+            flag++
+            answer[i] = Math.min(answer[i], flag)
+        } else {
+            flag = 0
+        }
+    }
+    return answer
+}
+
+let str = 'teachermode'
+let char = 'e'
+
+console.log(solution2(str, char))
+</script>
+</body>
+</html>
