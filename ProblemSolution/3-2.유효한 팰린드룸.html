@@ -12,19 +12,28 @@
 function solution(str) {
     let answer = "YES"
     // 영어 아닌 값 자르기
-    for(let i=0; i<str.length; i++) {
-        if((str[i].charCodeAt() < 65 || str[i].charCodeAt() > 122)) {
-            str = str.replace(str[i], '')
-            i -= 1
-        }
+for(let i=0; i<str.length; i++) {
+    if((str[i].charCodeAt() < 65 || str[i].charCodeAt() > 122)) {
+        str = str.replace(str[i], '')
+        i -= 1
     }
+}
     // 리버스 함수를 통해 일치 확인
     if(str.toLowerCase() !== str.toLowerCase().split('').reverse().join('')) {
         answer = "NO"
     }
     return answer
 }
-
+function solution(arr) {
+    let answer = 1, max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            answer++;
+            max = arr[i];
+        }
+    }
+    return answer;
+}
 function solution2(str) {
     let answer = "YES"
 

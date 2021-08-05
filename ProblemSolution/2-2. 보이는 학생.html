@@ -9,32 +9,32 @@
     <script>
         // 학생 키가 주어지고 앞에서 선생님이 봤을때 보이는 학생 수 구하기
 
-        function solution(arr) {
-            let count = 1
-            let high = arr[0]
-            for(let i=1; i < arr.length; i++) {
-                if(arr[i] > high) {
-                    high = arr[i]
-                    count++ 
-                }
-            }
-            return count
+function solution(arr) {
+    let count = 1
+    let high = arr[0]
+    for(let i=1; i < arr.length; i++) {
+        if(arr[i] > high) {
+            high = arr[i]
+            count++ 
         }
-        // reduce 로 한번 풀어보았다.
-        function solution2(arr) {
-            let temp = [arr[0]];
-            let answer = arr.reduce((high, v) => {
-                console.log(v, high)
-                if(v > high) {
-                    temp.push(v)
-                    high = v
-                    return high
-                } else {
-                    return high
-                }
-            }, arr[0])
-            return temp.length
+    }
+    return count
+}
+// reduce 로 한번 풀어보았다.
+function solution2(arr) {
+    let temp = [arr[0]];
+    let answer = arr.reduce((high, v) => {
+        console.log(v, high)
+        if(v > high) {
+            temp.push(v)
+            high = v
+            return high
+        } else {
+            return high
         }
+    }, arr[0])
+    return temp.length
+}
         let arr = [130,135,148,140,145,150,150,153]
         console.log(solution2(arr))
     </script>
