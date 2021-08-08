@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function solution1(arr) {
+    let answer = arr.filter((v, i) => {
+        if(i !== 0) {
+            return v > arr[i-1]
+        } else {
+            return v
+        }
+    })
+    return answer
+}
+function solution2(arr) {
+    let count = 0
+    let highst = Number.MIN_SAFE_INTEGER
+    for(let i=0;i<arr.length;i++) {
+        if(arr[i] > highst) {
+            highst = arr[i]
+            count++
+        }
+    }
+    return count
+}
+function solution3(arr1,arr2) {
+    let answer
+    let winObj = [-2, 1]
+    let loseObj = [-1, 2]
+    for(let i=0; i<arr1.length; i++) {
+        if(winObj.find((e) => ((arr1[i]-arr2[i]) === e))) {
+            console.log("A")
+        } else if(loseObj.find((e) => (arr1[i]-arr2[i]) === e)) {
+            console.log("B")
+        } else {
+            console.log("D")
+        }
+    }
+}
+
+function solution4(arr) {
+    let score = 0
+    let answer = 0
+    for(let x of arr) {
+        if(x === 0) {
+            score = 0
+        }  else {
+            score += 1
+        }
+        answer += score
+    }
+    return answer
+}
+
+function solution5(arr) {
+    let answer = []
+    for(let i=0;i<arr.length; i++) {
+        let grade = 1
+        for(let j=0; j<arr.length; j++) {
+            if(arr[i] < arr[j]) {
+                if(arr.findIndex((e) => (e === arr[j])) === j) {
+                    grade++
+                }
+            }
+        }
+        answer.push(grade)
+    }
+    return answer
+}
+
+function solution6(arr2) {
+    // 격자판
+    let rowSum = colSum = dirSum = tmpSum =0
+    let highst = Number.MIN_SAFE_INTEGER
+    // 각
+
+    for(let i=0; i<arr2.length; i++) {
+        for(let j=0; j<arr2.length; j++) {
+            rowSum += arr2[i][j]
+            colSum += arr2[j][i]
+            if(i === j) {
+                dirSum += arr2[i][j]
+            }
+        }
+        tmpSum += arr2[i][4-i]
+        let max = Math.max(rowSum, colSum, dirSum, tmpSum)
+        if(highst < max) {
+            highst = max
+        }
+        rowSum = colSum =0
+    }
+    return highst
+}
+
+function solution7(arr) {
+    // 봉우리
+    let dx = [0,0,-1,1]
+    let dy = [-1,1,0,0]
+    let answer = 0
+    for(let i=0; i<arr.length; i++) {
+        for(let j=0;j<arr.length; j++) {
+            let flag = 1
+            for(let k=0; k<dx.length; k++) {
+                nx = i + dx[k]
+                ny = j + dy[k]
+                if((nx >= 0 && nx < 5) && (ny >= 0 && ny < 5) && arr[i][j] < arr[nx][ny]) {
+                    flag = 0
+                    break
+                }
+            }
+            if(flag === 1) {
+                answer += 1
+            }
+        }
+    }
+    return answer
+
+}
+
+// let arr = [87, 89,92,100,76, 87]
+let arr = [[5, 3, 7, 2, 3],
+[3, 7, 1, 6, 1],
+[7, 2, 5, 3, 4],
+[4, 3, 6, 4, 1],
+[8, 7, 3, 5, 2]];
+// let arr2 = [1,1,2,2,3]
+console.log(solution7(arr))
+</script>
+</body>
+</html>

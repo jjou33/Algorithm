@@ -8,50 +8,61 @@
 <body>
 <script>
 
+// 반복문을 통해 직접 자릿수 합 계산
 function solution(arr) {
-    let answer = Number.MIN_SAFE_INTEGER
-    let tempArr = []
-    let result = []
-    for(let i=0; i<arr.length; i++) {
-        let sum = arr[i].toString().split('').reduce((acc,v) => {
-            return acc + parseInt(v)
-        }, 0)
-        
-        if (tempArr.indexOf(sum) !== -1) {
-            if(arr[tempArr.findIndex((el) => el === sum)] > arr[i]) {
-                tempArr.push(0)
-            } else {
-                tempArr[tempArr.findIndex((el) => el === sum)] = 0
-                tempArr.push(sum)
-            }
-        } else {
-            tempArr.push(sum)
-        }
-    }
-    console.log(tempArr)
-    return arr[tempArr.indexOf(Math.max(...tempArr))]
-}
-
-function solution2(arr) {
-    let max = Number.MIN_SAFE_INTEGER
+    let max = Number.MIN_SAFE_INTEGER // 최솟값 구하기 위한 defalt 값
     let answer
 
-    for(let x of arr) {
+    for (let x of arr) {
         let sum = 0, tmp = x
-        while(tmp) {
-            sum += (tmp%10)
-            tmp = parseInt(tmp/10)
+        // tmp 가 0이 될때까지 반복
+        while (tmp) {
+            // 나머지 값으로 각 자리 분리 계산
+            sum += (tmp % 10)
+            // 다음 자리 구하기 위한 몫 구하기(Math.floor 도 가능)
+            tmp = parseInt(tmp / 10)
         }
-        if(sum > max) {
+        // 최대값 Switching 
+        if (sum > max) {
             max = sum
             answer = x
-        } else if(max === sum) {
-            if(answer < x) {
+        } else if (max === sum) {
+            // 같은 값이 나왔을 경우
+            if (answer < x) {
                 answer = x
             }
         }
     }
-    console.log(answer)
+    return answer
+}
+
+// 내장함수 익힘 용
+function solution2(arr) {
+    let tempArr = []
+
+    for(let i=0; i<arr.length; i++) {
+        // 합 구하기
+        let sum = arr[i].toString().split('').reduce((acc,v) => {
+            return acc + parseInt(v)
+        }, 0)
+        // tempArr에 동일한 합이 존재하면
+        if (tempArr.indexOf(sum) !== -1) {
+            // tempArr 에 존재하는 동일 합의 Index 를 통한 값과 현재 값 비교
+            if(arr[tempArr.findIndex((el) => el === sum)] > arr[i]) {
+                // 현재값이 작으면 0으로 push
+                tempArr.push(0)
+            } else {
+                // 현재값이 더 크면 이전 값 0으로 변경
+                tempArr[tempArr.findIndex((el) => el === sum)] = 0
+                tempArr.push(sum)
+            }
+        } else {
+            // tempArr 에 값이 존재하지 않으면
+            tempArr.push(sum)
+        }
+    }
+    // tempArr 내 최대값의 인덱스를 뽑아서 arr 내 값 Return
+    return arr[tempArr.indexOf(Math.max(...tempArr))]
 }
 
 let arr = [137, 460, 603, 40, 521, 128, 123]
