@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function solution(a,b) {
+    let th = new Map()
+    let sh = new Map()
+    let lt = 0
+    let cnt = 0
+    function compareMaps(map1, map2) {
+        if (map1.size !== map2.size) return false;
+        for (let [key, val] of map1) {
+            if (!map2.has(key) || map2.get(key) !== val) return false;
+        }
+        return true;
+    }
+    for(let x of b) {
+        if(th.has(x)) {
+            th.set(x, th.get(x)+1)
+        } else {
+            th.set(x,1)
+        }
+    }
+    for(let i=0;i<2;i++) {
+        if (sh.has(b[i])) {
+            sh.set(b[i], sh.get(b[i]) + 1)
+        } else {
+            sh.set(b[i], 1)
+        }
+    }
+    for (let rt = 2; rt < a.length; rt++) {
+        if(sh.has(a[rt])) {
+            sh.set(a[rt], sh.get(a[rt]) + 1)
+        } else {
+            sh.set(a[rt], 1)
+        }
+        console.log(sh)
+        if(compareMaps(sh, th)) {
+            console.log(cnt)
+            cnt++
+        }
+        sh.set(a[lt], sh.get(a[lt])-1)
+        if(sh.get(a[lt]) === 0) {
+            sh.delete(a[lt])
+        }
+        lt++
+    }
+    console.log(cnt)
+}
+
+let a = 'bacaAacba'
+let t = 'abc'
+console.log(solution(a,t))
+</script>
+</body>
+</html>

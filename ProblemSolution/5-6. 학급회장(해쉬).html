@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function solution(str) {
+    let hash = new Map()
+    let maxValue = Number.MIN_SAFE_INTEGER 
+    let answer = ''
+    for(let x of str) {
+        if(!hash.has(x)) {
+            hash.set(x, 1)
+        } else {
+            hash.set(x, hash.get(x)+1)
+        }
+    }
+    hash.forEach((v,k) => {
+        if(v > maxValue) {
+            maxValue = v
+            answer = k
+        }
+    })
+    console.log(answer)
+}
+
+let str = 'BACBACCACCBDEDE'
+console.log(solution(str))
+
+</script>
+</body>
+</html>

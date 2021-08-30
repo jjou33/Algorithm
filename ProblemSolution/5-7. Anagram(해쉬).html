@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// 해쉬맵 1개 사용
+function solution(str1, str2) {
+    let hash1 = new Map()
+    let hash2 = new Map()
+    let answer = 'YES'
+    for (let x of str1) {
+        if (hash1.has(x)) {
+            hash1.set(x, hash1.get(x) + 1)
+        } else {
+            hash1.set(x, 1)
+        }
+    }
+    for(let x of str2) {
+        if(!hash1.has(x)||hash1.get(x) === 0) {
+            answer = "NO"
+            break
+        } else {
+            if (hash1.get(x) === 0) {
+                answer = "NO"
+                break
+            }
+            hash1.set(x, hash1.get(x) - 1)
+        }
+    }
+    return answer
+}
+// 해쉬맵 2개 사용
+function solution2(str1, str2) {
+    let hash1 = new Map()
+    let hash2 = new Map()
+    let answer = 'YES'
+    for (let x of str1) {
+        if (hash1.has(x)) {
+            hash1.set(x, hash1.get(x) + 1)
+        } else {
+            hash1.set(x, 1)
+        }
+    }
+    for (let x of str2) {
+        if (hash2.has(x)) {
+            hash2.set(x, hash2.get(x) + 1)
+        } else {
+            hash2.set(x, 1)
+        }
+    }
+    hash1.forEach((v,k) => {
+        if(!hash2.has(k)||v!==hash2.get(k)||hash1.size !== hash2.size) {
+            answer = 'NO'
+        }
+    })
+    console.log(answer)
+}
+
+let str1 = 'abaCC'
+let str2 = 'Caaab'
+console.log(solution(str1, str2))
+</script>
+</body>
+</html>
