@@ -8,17 +8,20 @@
 <body>
 <script>
 function solution(a,b) {
-    let th = new Map()
-    let sh = new Map()
+    let th = new Map() // 기준 Map (b)
+    let sh = new Map() // 비교 Map (a)
     let lt = 0
     let cnt = 0
+    // sh 와 th 가 동일한지 판별하는 함수
     function compareMaps(map1, map2) {
+        // map 간의 Size 가 다르면 false
         if (map1.size !== map2.size) return false;
         for (let [key, val] of map1) {
             if (!map2.has(key) || map2.get(key) !== val) return false;
         }
         return true;
     }
+    // 기준되는 th 맵 셋팅
     for(let x of b) {
         if(th.has(x)) {
             th.set(x, th.get(x)+1)
@@ -26,6 +29,7 @@ function solution(a,b) {
             th.set(x,1)
         }
     }
+    // 비교하며 추가삭제 할 sh 맵 셋팅
     for(let i=0;i<2;i++) {
         if (sh.has(b[i])) {
             sh.set(b[i], sh.get(b[i]) + 1)
@@ -33,29 +37,34 @@ function solution(a,b) {
             sh.set(b[i], 1)
         }
     }
+    // 실제 비교하는 로직
+    // 3번째 index 부터 시작(rt = 2)
     for (let rt = 2; rt < a.length; rt++) {
+        // sh 완성
         if(sh.has(a[rt])) {
             sh.set(a[rt], sh.get(a[rt]) + 1)
         } else {
             sh.set(a[rt], 1)
         }
-        console.log(sh)
+        // 기준 Map 과 비교
         if(compareMaps(sh, th)) {
-            console.log(cnt)
+            // 동일하면 cnt 증가
             cnt++
         }
+        // lt 빼고 0이면 삭제
         sh.set(a[lt], sh.get(a[lt])-1)
         if(sh.get(a[lt]) === 0) {
             sh.delete(a[lt])
         }
+        // lt 증가
         lt++
     }
-    console.log(cnt)
+    return cnt
 }
 
 let a = 'bacaAacba'
-let t = 'abc'
-console.log(solution(a,t))
+let b = 'abc'
+console.log(solution(a,b))
 </script>
 </body>
 </html>
