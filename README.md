@@ -1,3 +1,1 @@
-javascript 알고리즘 레벨 별 올리는 레파지토리.
-
-개인적으로 솔루션에 대해 기억하기 위함이다.
+javascript 알고리즘 연습을 위한 Git Repository
