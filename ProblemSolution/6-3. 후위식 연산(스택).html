@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function solution(s) {
+    let result = lv = rv = 0
+    let operator = ['+','-','*','/']
+    let stack = []
+    for(let x of s) {
+        if(!isNaN(x)) {
+            stack.push(Number(x))
+        } else {
+            rv = stack.pop()
+            lv = stack.pop()
+            stack.push(fix(rv, lv, x))
+        }
+    }
+    return stack.pop()
+}
+function fix(rv,lv,op) {
+    if(op === '+') {
+        return lv + rv
+    } else if(op === '-') {
+        return lv - rv
+    } else if(op === '*') {
+        return lv * rv
+    } else {
+        return lv / rv
+    }
+}
+let str = '352+*9-'
+console.log(solution(str))
+</script> 
+</body>
+</html>

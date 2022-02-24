@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(id_list, report, k) {
+        let answer = Array(id_list.length).fill(0);
+        for (let i = 0; i < id_list.length; i++) {
+          let tempArr = [];
+          for (let j = 0; j < report.length; j++) {
+            let splitValues = report[j].split(" ");
+            if (
+              splitValues[1] === id_list[i] &&
+              !tempArr.includes(splitValues[0])
+            ) {
+              tempArr.push(splitValues[0]);
+            }
+          }
+          if (tempArr.length >= k) {
+            tempArr.forEach((v) => {
+              answer[id_list.indexOf(v)] += 1;
+            });
+          }
+        }
+
+        return answer;
+      }
+
+      let id_list = ["muzi", "frodo", "apeach", "neo"];
+      let report = [
+        "muzi frodo",
+        "apeach frodo",
+        "frodo neo",
+        "muzi neo",
+        "apeach muzi",
+      ];
+      let k = 2;
+      console.log(solution(id_list, report, k));
+    </script>
+  </body>
+</html>

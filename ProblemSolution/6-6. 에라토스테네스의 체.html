@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getPrimes(n) {
+        // 주어진 n 개의 true 값으로 채워진 배열을 만들고 0,1 은 false 로 변경
+        let arr = Array(n + 1)
+          .fill(true)
+          .fill(false, 0, 2);
+        console.log(arr);
+        // 소수가 아닌 것들을 false 로 변경
+        for (let i = 2; i * i <= n; i++) {
+          if (arr[i]) {
+            for (let j = i * i; j <= n; j += i) {
+              arr[j] = false;
+            }
+          }
+        }
+        const resultArr = arr.filter((e, i) => {
+          if (e === true) {
+            return i;
+          }
+        });
+
+        return resultArr;
+      }
+
+      getPrimes(3);
+    </script>
+  </body>
+</html>

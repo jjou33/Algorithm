@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+function solution(a) {
+    let stack = []
+    let answer = 0
+    for(let i=0; i<a.length; i++) {
+        if(a[i]==='(') {
+            stack.push(a[i])
+        } else {
+            stack.pop()
+            if(a[i-1] === ')') {
+                answer += 1
+            } else {
+                answer += stack.length
+            }
+        }
+    }
+    return answer
+}
+function mySolution(a) {
+    let stack = []
+    let beforeFlag = 'N'
+    let raiser = band = 0
+    for(let x of a) {
+        if(x === '(') {
+            if((stack.length !== 0) && beforeFlag === 'N') {
+                band -= raiser
+            }
+            beforeFlag = 'N'
+            stack.push(x)
+        } else {
+            if(beforeFlag === 'Y') {
+                stack.pop()
+                band += (raiser+1)
+            } else {
+                beforeFlag = 'Y'
+                stack.pop()
+                raiser++
+            }
+        }
+    }
+    return band
+}
+let value = '()(((()())(())()))(())'
+console.log(solution(value))
+</script>
+</body>
+</html>
