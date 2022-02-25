@@ -9,24 +9,25 @@
     <script>
       function solution(id_list, report, k) {
         let answer = Array(id_list.length).fill(0);
-        for (let i = 0; i < id_list.length; i++) {
-          let tempArr = [];
-          for (let j = 0; j < report.length; j++) {
-            let splitValues = report[j].split(" ");
-            if (
-              splitValues[1] === id_list[i] &&
-              !tempArr.includes(splitValues[0])
-            ) {
-              tempArr.push(splitValues[0]);
-            }
-          }
-          if (tempArr.length >= k) {
-            tempArr.forEach((v) => {
-              answer[id_list.indexOf(v)] += 1;
+        let tempObj = new Object();
+        let reportObject = [...new Set(report)];
+        console.log(reportObject);
+        id_list.map((user) => {
+          tempObj[user] = [];
+        });
+
+        reportObject.map((user) => {
+          const [userId, reportId] = user.split(" ");
+          tempObj[reportId].push(userId);
+        });
+
+        for (const user in tempObj) {
+          if (tempObj[user].length >= k) {
+            tempObj[user].map((user) => {
+              answer[id_list.indexOf(user)] += 1;
             });
           }
         }
-
         return answer;
       }
 
@@ -37,9 +38,10 @@
         "frodo neo",
         "muzi neo",
         "apeach muzi",
+        "apeach muzi",
       ];
       let k = 2;
-      console.log(solution(id_list, report, k));
+      solution(id_list, report, k);
     </script>
   </body>
 </html>
