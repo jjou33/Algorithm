@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(forcedClass, myClassList) {
+        let queue = forcedClass.split('')
+        Array.from(myClassList).forEach((v) => {
+          if(queue.includes(v)) {
+            if(v !== queue.shift()) {
+              return "NO"
+            }
+          }
+          
+        })
+        if(queue.length > 0) {
+          console.log("NO")
+        } else {
+          console.log("YES")
+        }
+      }
+      solution("CBA", "CDABGE");
+    </script>
+  </body>
+</html>
