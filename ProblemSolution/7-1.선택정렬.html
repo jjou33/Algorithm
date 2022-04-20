@@ -8,14 +8,19 @@
   <body>
     <script>
       function solution(length, arr) {
+        // 얕은 복사
         let answer = arr
+        // 기준이 되는 반복문(length-1 로 조건을 변경해도 무방)
         for(let i=0; i<length; i++) {
+          // idx 즉, j 반복문이 돌면서 가장 작은 값이 있는 index 를 의미
           let idx = i;
+          // 반복문을 통해 가장 작은 수를 찾는다.
           for(let j=i+1; j<length;j++) {
             if(arr[j] < arr[idx]) {
               idx = j
             }
           }
+          // 최신 Javascript 가 제공하는 배열내 값 바꾸기!
           [arr[i], arr[idx]] = [arr[idx], arr[i]]
         }
         return answer

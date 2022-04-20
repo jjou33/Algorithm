@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        function solution(arr) {
+          let answer = Array.from({length:5}, ()=> 0);
+          arr.forEach((v,i) => {
+            console.log(answer)
+            let hitIndex = answer.findIndex((e) => e === v);
+            if(hitIndex > 0) {
+              answer.unshift(answer.splice(hitIndex, 1)[0])
+            } else {
+              answer.unshift(v)
+              if (answer.length > 5) {
+                answer.pop()
+              } 
+            }
+          })
+          return answer
+        }
+
+        function solution2(arr) {
+          let answer = Array.from({length: 5}, () => 0);
+          arr.forEach((v,i) => {
+            let hitIndex = answer.findIndex((e) => e === v)
+            if(hitIndex < 0) {
+              for(let j=4; j > 0; j--) {
+                answer[j] = answer[j-1]
+              }
+            } else {
+              for(let j= hitIndex; j > 0; j--) {
+                answer[j] = answer[j-1]
+              }
+            }
+            answer[0] = v
+          })
+          return answer 
+        }
+        let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+        console.log(solution(arr));
+    </script>
+  </body>
+</html>

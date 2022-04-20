@@ -11,15 +11,20 @@
         function solution(arr) {
           let answer = arr;
           for(let i=1;i<arr.length;i++) {
-            console.log(arr)
+            // arr[i]에 대한 값을 temp 에 저장해둔다. 
+            // j 값은 break 한 이후 사용해야 하므로 선언을 따로해준다.
             let temp = arr[i], j
             for(j=i-1; j >= 0; j--) {
+              // 만약 temp 값보다 arr[j]값이 클경우 현재 j 값의 바로앞에 j 값을 복사해넣는다.
               if (temp < arr[j]) {
                 arr[j+1] = arr[j]
               } else {
+                // 만약 temp 값보다 arr[j]값이 작을경우는 이 앞은 정렬이 되어있으므로
+                // 빠져나간다.
                 break
               }
             }
+            // 빠져나왔을 경우를 대비해 j+1 즉, 현재 j의 바로 앞에 temp 값을 넣는다.
             arr[j+1] = temp
             
           }
